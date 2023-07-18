@@ -1,0 +1,67 @@
+:root {
+  --bodyTextColor: #1f1f1f;
+  --primaryColor: #5247f0;
+  --secondaryColor: #818093;
+  --successColor: #00B69B;
+  --infoColor: #2DB6F5;
+  --warningColor: #FFBC2B;
+  --dangerColor: #EE368C;
+  --darkColor: #1f1f1f;
+  --headingColor: #1f1f1f;
+  --whiteColor: #ffffff;
+  --fontSize: 15px;
+  --transition: all ease .5s;
+  --box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  margin: 0;
+  background-color: var(--darkColor);
+}
+
+.main-wrapper-content {
+  padding-left: 330px;
+  position: relative;
+  transition: all 0.5s ease-out;
+}
+.main-wrapper-content.active {
+  padding-left: 0;
+}
+.main-wrapper-content.active .LeftSidebarNav {
+  left: -100%;
+}
+.main-wrapper-content.active .main-content {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.main-wrapper-content .main-content {
+  padding-right: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-wrapper-content .main-content {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+@media only screen and (max-width: 1199px) {
+  .main-wrapper-content {
+    padding: 0;
+  }
+  .main-wrapper-content .LeftSidebarNav {
+    left: -100%;
+    width: 280px;
+  }
+  .main-wrapper-content .main-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .main-wrapper-content.active .LeftSidebarNav {
+    z-index: 99999;
+    left: 0;
+  }
+}
+
+.main-wrapper-content:has(div.authenticationBox) {
+  padding: 0;
+}
