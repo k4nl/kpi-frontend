@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useAuth } from "@/context/useAuth";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/icons-material/Menu";
+import { getCookiesFromDocument } from "@/utils/Cookies";
 
 const TopNavbar = ({ toogleActive }: { toogleActive: () => void }) => {
-  const auth = useAuth();
+  const userdata = getCookiesFromDocument();
   const [width, setWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const TopNavbar = ({ toogleActive }: { toogleActive: () => void }) => {
 
 
           <Typography variant="h5" className='greyText' sx={{ flexGrow: 1, ml: 2 }}>
-            { ` Bem vindo, ${auth.userData?.nome}!`}
+            { ` Bem vindo, ${userdata.nome}!`}
           </Typography>
         </div>
 
