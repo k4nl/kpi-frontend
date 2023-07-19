@@ -23,7 +23,7 @@ export default function Landing() {
   const auth = useAuth();
 
   const verifyResponse = (response: IResponse) => {
-    if (response.status === status.SUCCESS) {
+    if (response?.status === status.SUCCESS) {
       auth.login(response.data);
       return router.push('/dashboard')
     }
