@@ -1,18 +1,11 @@
 import api from './api';
-import { cookies } from 'next/headers'
-import JWT from '@/utils/JWT'
+import { getCookiesFromDocument } from '@/utils/Cookies';
 
 const baseURL = '/dashboard';
 
-const getUserIdFromCookies = () => {
-  const token = cookies().get('token')?.value;
-  if (!token) return null;
-  return JWT.verify(token).id;
-}
-
 const getDashboard = async () => {
   try {
-    const userId = getUserIdFromCookies();
+    const userId = getCookiesFromDocument().id;
     if (!userId) return { status: 400, data: 'Usuario nao encontrado' };
     const response = await api.get(`${baseURL}/${userId}`);
     return response;

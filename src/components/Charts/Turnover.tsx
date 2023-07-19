@@ -7,7 +7,7 @@ import Switch  from '@mui/material/Switch';
 import ChartInfo from './ChartInfo';
 
 
-export default function Turnover({ data }: { data: IInitialData[] }) {
+export default function Turnover({ data = [] }: { data: IInitialData[] }) {
   const [showInfo, setShowInfo] = useState<boolean>(false)
   const [chartInfo, setChartInfo] = useState<any>(null)
 

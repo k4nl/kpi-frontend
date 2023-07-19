@@ -7,7 +7,7 @@ import Switch  from '@mui/material/Switch';
 import ChartInfo from './ChartInfo';
 
 
-export default function HeadCount({ data }: { data: IInitialData[] }) {
+export default function HeadCount({ data = [] }: { data: IInitialData[] }) {
   const [showInfo, setShowInfo] = useState<boolean>(false)
   const [chartInfo, setChartInfo] = useState<any>(null)
 
