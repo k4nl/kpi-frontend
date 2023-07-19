@@ -27,7 +27,6 @@ export default function Turnover({ data }: { data: IInitialData[] }) {
         y: verifyAverageAndInactives(item.monthData.data.average, item.monthData.data.inactives.length),
       }
     })
-    console.log(chartData);
     return {
       id: 'Head Count',
       color: "hsl(62, 70%, 50%)",

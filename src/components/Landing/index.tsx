@@ -1,11 +1,12 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/useAuth';
 import { useRouter } from 'next/navigation';
 import LogoContainer from './LogoContainer';
 import Form from './Form';
 import userService from '@/services/user';
 import status from '@/utils/status';
+import { removeCookiesFromDocument, setCookiesOnDocument } from '@/utils/Cookies';
 
 
 interface IResponse {
@@ -24,7 +25,9 @@ export default function Landing() {
 
   const verifyResponse = (response: IResponse) => {
     if (response?.status === status.SUCCESS) {
-      auth.login(response.data);
+      auth.userData = response.data;
+      auth.isAuthenticated = true;
+      setCookiesOnDocument(response.data)
       return router.push('/dashboard')
     }
     setSearching(false);
@@ -38,6 +41,14 @@ export default function Landing() {
     const response = await userService.get(email);
     verifyResponse(response);
   }
+
+  useEffect(() => {
+    if (auth.isAuthenticated || auth.userData) {
+      auth.isAuthenticated = false;
+      auth.userData = null;
+      removeCookiesFromDocument();
+    }
+  }, []);
 
   return (
     <div
